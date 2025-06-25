@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "31783007813",
+    "firebase_url": "https://hidroponic-reni-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hidroponic-reni",
+    "storage_bucket": "hidroponic-reni.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31783007813:android:06014948323230d60a152c",
+        "android_client_info": {
+          "package_name": "com.example.hidroponik_app2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnx8RbhZcFl1STuftx0PlWOdBXdqMCefw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31783007813:android:91a5b00ee33ad9050a152c",
+        "android_client_info": {
+          "package_name": "com.example.nutriplant_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnx8RbhZcFl1STuftx0PlWOdBXdqMCefw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
