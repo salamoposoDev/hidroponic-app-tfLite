@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hidroponik_app2/cubit/get_control_cubit.dart';
+import 'package:hidroponik_app2/cubit/get_mode_cubit.dart';
 
 class ControlBanner extends StatelessWidget {
   const ControlBanner({super.key});
@@ -14,6 +15,9 @@ class ControlBanner extends StatelessWidget {
     //   log(event.snapshot.value.toString());
     // });
     const items = ['Pump PH uP', 'Pump PH Down', 'Pump Nutrisi', 'Pump Air'];
+
+    // final mode = context.read<GetModeCubit>().state;
+    // log('mode= $mode');
 
     return BlocProvider(
       create: (context) => GetControlCubit()..getPumpStatus(),
@@ -57,7 +61,7 @@ class ControlBanner extends StatelessWidget {
                       );
 
                       return Container(
-                        padding: EdgeInsets.only(left: 4.w),
+                        padding: EdgeInsets.only(left: 4.w, right: 4.w),
                         decoration: BoxDecoration(
                           color: Colors.grey.shade50,
                           borderRadius: BorderRadius.circular(12.r),
@@ -79,29 +83,42 @@ class ControlBanner extends StatelessWidget {
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                            IconButton(
-                              onPressed:
-                                  !isAnyActive
-                                      ? () {
-                                        const key = [
-                                          'phUp',
-                                          'phDown',
-                                          'nutrisi',
-                                          'air',
-                                        ];
-                                        context
-                                            .read<GetControlCubit>()
-                                            .updateSingleField(key[index], 1);
-                                      }
-                                      : null,
-                              icon:
-                                  controlData[index] == 0
-                                      ? Icon(Icons.power_settings_new, size: 22)
-                                      : SizedBox(
-                                        height: 18.h,
-                                        width: 18.w,
-                                        child: CircularProgressIndicator(),
-                                      ),
+                            BlocBuilder<GetModeCubit, int>(
+                              builder: (context, mode) {
+                                return mode == 0
+                                    ? IconButton(
+                                      onPressed:
+                                          !isAnyActive
+                                              ? () {
+                                                const key = [
+                                                  'phUp',
+                                                  'phDown',
+                                                  'nutrisi',
+                                                  'air',
+                                                ];
+                                                context
+                                                    .read<GetControlCubit>()
+                                                    .updateSingleField(
+                                                      key[index],
+                                                      1,
+                                                    );
+                                              }
+                                              : null,
+                                      icon:
+                                          controlData[index] == 0
+                                              ? Icon(
+                                                Icons.power_settings_new,
+                                                size: 22,
+                                              )
+                                              : SizedBox(
+                                                height: 18.h,
+                                                width: 18.w,
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
+                                    )
+                                    : Text('Auto');
+                              },
                             ),
                           ],
                         ),
